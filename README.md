@@ -75,7 +75,6 @@ Each taxi trip is represented as a directed `TRIP` relationship from the pickup 
 }]->(:Location)
 ~~~
 
-The data loader uses `MERGE` to avoid duplicate `Location` nodes and `CREATE` to insert each taxi trip as a separate relationship.
 
 ## Phase 1: Docker-Based Graph Processing
 
@@ -145,14 +144,3 @@ The objective of this phase is to simulate a more realistic real-time data pipel
 
 - `data_producer.py`
   - Streams taxi trip records into Kafka.
-
-## Streaming Pipeline Architecture
-
-The distributed pipeline follows this flow:
-
-1. `data_producer.py` reads taxi trip records.
-2. Trip records are streamed into a Kafka topic.
-3. Kafka Connect consumes records from the Kafka topic.
-4. The Neo4j Kafka Connector converts incoming records into Cypher operations.
-5. Neo4j receives the records and updates the graph database.
-6. Graph analytics can be performed on the updated graph.
