@@ -1,0 +1,15 @@
+neo4j:
+  name: neo4j-standalone
+  password: "processingpipeline"
+  resources:
+    cpu: "0.5"
+    memory: "2Gi"
+  env:
+    NEO4J_PLUGINS: '["graph-data-science"]'
+
+volumes:
+  data:
+    mode: defaultStorageClass
+    defaultStorageClass:
+      requests:
+        storage: 2Gi
